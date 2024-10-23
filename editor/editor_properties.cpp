@@ -465,7 +465,7 @@ void EditorPropertyPath::_path_selected(const String &p_path) {
 	StringName edited_property = get_edited_property();
 	emit_changed(edited_property, p_path);
 	if (edited_property == "exec_path") {
-		emit_signal("exec_path_changed", p_path); //path->get_text()); //p_path?
+		emit_signal("exec_path_changed", p_path);
 	}
 	update_property();
 }
