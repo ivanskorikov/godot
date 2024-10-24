@@ -479,10 +479,13 @@ void EditorPropertyPath::_on_exec_path_changed(String new_path) {
 	regex->compile(editor_pattern);
 	Ref<RegExMatch> editor_match = regex->search(new_path);
 
-	if (editor_match.is_valid()) {
-		editor = editor_match->get_string(1).to_lower();
+	if (!editor_match.is_valid()) {
+		return;
 	}
+
+	editor = editor_match->get_string(1).to_lower();
 	String new_exec_flags;
+
 	if (editor.contains("rider")) { //== "rider" || editor == "rider64" || editor == "rider eap") {
 		new_exec_flags = "{project} --line {line} {file}";
 	} else if (editor == "subl" || editor == "sublime text" || editor == "sublime_text") {
